@@ -43,7 +43,7 @@ void disp(struct node* head){
     printf("Nodes of singly linked list: \n");
     while(current != NULL) {
         //Prints each node by incrementing pointer
-        printf("%d ", current->data);
+        printf("%d->", current->data);
         current = current->next;
     }
     printf("\n");
@@ -59,6 +59,19 @@ while(c != NULL) {
     return n;
 }
 
+struct node *reverse(struct node *a){
+struct node *prev=(struct node*)malloc(sizeof(struct node)), *next=(struct node*)malloc(sizeof(struct node)),*curr=(struct node*)malloc(sizeof(struct node));
+prev=NULL;
+next=NULL;
+curr=a;
+while(curr){
+    next=curr->next;
+    curr->next=prev;
+    prev=curr;
+    curr=next;
+}
+return prev;
+};
 
 int main()
 {
@@ -85,7 +98,7 @@ c->next=NULL;
 last=a;
 
 while(1){
-printf("Enter\n 0 to exit out of here\n 1 to add an element at the last\n 2 to add an element in the middle\n 3 to display all the elements\n 4 to know the number of elements\n");
+printf("Enter\n 0 to exit out of here\n 1 to add an element at the last\n 2 to add an element in the middle\n 3 to display all the elements\n 4 to know the number of elements\n 5 to reverse the list\n");
 scanf("%d",&j);
 if(j==1){
     printf("Enter the element you would like to add at the last\n");
@@ -108,6 +121,11 @@ else if(j==3){
 }
 else if(j==4){
     printf("There are %d elements present in the list\n",count(a));
+}
+else if(j==5){
+    printf("\nReversing the list....\nReversing is done\n Below is the linked list displayed\n");
+    a=reverse(a);
+    disp(a);
 }
 else if(j==0){
     break;
